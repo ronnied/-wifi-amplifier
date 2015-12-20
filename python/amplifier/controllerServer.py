@@ -1,6 +1,6 @@
 from twisted.web.resource import Resource
 from amplifier.controller import Controller
-# from amplifier.input import Input
+from amplifier.lircInput import LircInput
 
 # Control Server just delegates
 # messages interpreted to the
@@ -16,8 +16,8 @@ class ControllerServer(Resource):
   #controller.powerOn()
   
   # Input Resource - direct connection to Controller object
-  # input = Input.Worker(controller)
-  # input.start()
+  lircInput = LircInput.Worker(controller)
+  lircInput.start()
   
   def render_GET(self, request):
     request.setHeader("content-type", "application/json")
